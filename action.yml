@@ -1,0 +1,25 @@
+name: 'Simple Slack Notification'
+description: 'Sends a simple notification via an Incoming WebHook into Slack'
+author: 'Benjamin Maynard'
+inputs: 
+  slackWebhook:
+    description: 'The Webhook URL for Slack'
+    required: true
+  slackChannel:
+    description: 'The Slack channel name'
+    required: true
+  slackUsername:
+    description: 'The username to use for the Webhook'
+    required: false
+    default: 'Simple Slack Notify'  
+  slackMessage:
+    description: 'The message to send into Slack via the Webhook'
+    required: true  
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.slackWebhook }}
+    - ${{ inputs.slackChannel }}
+    - ${{ inputs.slackUsername }}
+    - ${{ inputs.slackMessage }}
