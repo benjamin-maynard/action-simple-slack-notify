@@ -1,9 +1,9 @@
-FROM alpine:3.10
+FROM python:3.7.4-alpine3.10
 
-RUN apk add curl
+RUN pip3 install requests
 
-COPY LICENSE README.md /
+WORKDIR /usr/src/app
 
-COPY entrypoint.sh /entrypoint.sh
+COPY slackMessage.py .
 
-ENTRYPOINT ["/entrypoint.sh"]
+CMD [ "python", "./slackMessage.py" ]
